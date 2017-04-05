@@ -1,0 +1,52 @@
+#!/usr/bin/env python
+#coding:utf-8
+
+import fire
+import os
+
+class IngestionStage(object):
+
+  def run(self):
+    print 'Ingesting! Nom nom nom...'
+
+class DigestionStage(object):
+
+  def run(self, volume=1):
+    return ' '.join(['Burp!'] * volume)
+
+  def status(self):
+    return 'Satiated.'
+
+class CommandXP(object):
+
+  def __init__(self):
+    self.ingestion = IngestionStage()
+    self.digestion = DigestionStage()
+
+  def openFileOrDir(self, file='./'):
+    os.system('open ' + file)
+
+  def openXcodeWorkspaceOrProject(self):
+    rootdir = './'
+    list = os.listdir(rootdir)#列出目录下的所有文件和目录
+    xcodeprojBundle = None
+    xcworkspaceBundle = None
+    for line in list:
+      nPos = line.find('.xcodeproj')
+      if nPos != -1:
+        xcodeprojBundle = line
+      nPos = line.find('.xcworkspace')
+      if nPos != -1:
+        xcworkspaceBundle = line 
+    if None != xcworkspaceBundle:
+      os.system('open ' + xcworkspaceBundle)
+    elif None != xcodeprojBundle:
+      os.system('open ' + xcworkspaceBundle)      
+    else:
+      print '当前目录没有找到XCode工程文件'
+
+
+if __name__ == '__main__':
+  fire.Fire(CommandXP)
+
+

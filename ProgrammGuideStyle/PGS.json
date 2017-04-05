@@ -1,0 +1,29 @@
+{
+	"mark refix":{
+		"oc":"#pragma mark - ",
+		"swift":"MARK: - ",
+    },
+    
+    "match":[
+	    {
+	    	"file type":"view",
+	    	"file type express":"",
+	    	"mark":{
+		        "life express":"创建子视图并初始化自己",
+		        "express":["动态属性及重写属性", "数据源和代理处理", "处理用户事件及传递", "坐标计算及变换", "动画", "画图"]
+	    	}
+	    },  
+        {
+	       	"file type":"controller",
+	    	"file type express":"",
+	    	"mark":{
+		        "life express":"数据模型和视图生命周期管理",
+		        "aa express":["动态属性及重写属性", "界面跳转", "视图事件响应", "数据模型和视图的交互"]
+	    	}
+    	},
+    ]	
+}
+
+
+
+
