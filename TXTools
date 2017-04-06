@@ -26,6 +26,9 @@ class CommandXP(object):
   def openFileOrDir(self, file='./'):
     os.system('open ' + file)
 
+  def openFileOrDirWithSublime(self, file='./'):
+    os.system('open -a "Sublime Text.app" ' + file)
+
   def openXcodeWorkspaceOrProject(self):
     rootdir = './'
     list = os.listdir(rootdir)#列出目录下的所有文件和目录

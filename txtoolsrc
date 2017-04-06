@@ -3,10 +3,10 @@
 export PATH=$PATH:$HOME/workspace/code/python/TXTools
 alias o="TXTools openFileOrDir"
 alias x="TXTools openXcodeWorkspaceOrProject"
+alias sb="TXTools openFileOrDirWithSublime"
 alias gbv="git branch -v"
 alias gcod="gco develop"
 alias gcobd="gco -b develop"
-
 
 
 
