@@ -4,6 +4,8 @@
 import fire
 import os
 import ConfigParser
+import subprocess
+from contextlib import contextmanager
 
 cfg = ConfigParser.ConfigParser()
 txtoolspath = os.environ.get('TXTOOLSPATH')
@@ -38,11 +40,23 @@ class CommandXP(object):
   def openFileOrDirWithSublime(self, file='./'):
     os.system('open -a "Sublime Text.app" ' + file)
 
+  def cdx(self, newdir='./'):
+    # prevdir = os.getcwd()
+    # os.chdir(os.path.expanduser(newdir))
+    print "cd " + newdir
+    subprocess.call("cd " + newdir, shell=True)
+    os.system('pwd')
+    # try:
+    #     yield
+    # finally:
+    #     os.chdir(prevdir)
+
   def openXcodePrjAnywhere(self):
-    
     xcpath = cfg.get('project', 'WorkspacePath')
-    os.system('cd ' + xcpath)
-    print "xcpath", xcpath
+    # print 'cd ' + xcpath
+    # os.system('cd ' + xcpath)
+    # os.chdir(xcpath)
+    # os.getcwd()
     self.openXcodeWorkspaceOrProject(xcpath)
 
   def openXcodeWorkspaceOrProject(self, rootdir = './'):
@@ -56,10 +70,11 @@ class CommandXP(object):
       nPos = line.find('.xcworkspace')
       if nPos != -1:
         xcworkspaceBundle = line 
+        break
     if None != xcworkspaceBundle:
       os.system('open ' + os.path.join(rootdir, xcworkspaceBundle))
     elif None != xcodeprojBundle:
-      os.system('open ' + os.path.join(rootdir, xcworkspaceBundle))
+      os.system('open ' + os.path.join(rootdir, xcodeprojBundle))
     else:
       print '当前目录没有找到XCode工程文件'
 
