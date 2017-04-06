@@ -2,15 +2,15 @@
 # 工具所有工程目录
 export TXTOOLSPATH=$HOME/workspace/code/python/TXTools
 
-# 项目工程目录
-export PRJDIR=$HOME/workspace/code/PALifeApp
+# PARS项目工程目录
+export PARDIR=$HOME/workspace/code/PALifeApp
 
 # 导出TXTools命令所在的目录
 export PATH=$PATH:$TXTOOLSPATH
 
 # 进入工程目录，并打开工程文件
 function cd_my_project_and_open(){
-    cd ${PRJDIR}
+    cd ${PARDIR}
     TXTools openXcodeWorkspaceOrProject
 }
 
@@ -19,7 +19,7 @@ alias x="TXTools openXcodeWorkspaceOrProject"
 alias sb="TXTools openFileOrDirWithSublime"
 alias xa="TXTools openXcodePrjAnywhere"
 alias cdp="cd_my_project_and_open"
-alias cdpd="cd ${PRJDIR}"
+alias cdpd="cd ${PARDIR}"
 
 alias t="touch"
 

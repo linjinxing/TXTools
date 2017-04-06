@@ -52,12 +52,12 @@ class CommandXP(object):
     #     os.chdir(prevdir)
 
   def openXcodePrjAnywhere(self):
-    xcpath = cfg.get('project', 'WorkspacePath')
+    # xcpath = cfg.get('project', 'WorkspacePath')
     # print 'cd ' + xcpath
     # os.system('cd ' + xcpath)
     # os.chdir(xcpath)
     # os.getcwd()
-    self.openXcodeWorkspaceOrProject(xcpath)
+    self.openXcodeWorkspaceOrProject(os.environ.get('PARDIR'))
 
   def openXcodeWorkspaceOrProject(self, rootdir = './'):
     list = os.listdir(rootdir)#列出目录下的所有文件和目录
