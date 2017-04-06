@@ -3,6 +3,12 @@
 
 import fire
 import os
+import ConfigParser
+
+cfg = ConfigParser.ConfigParser()
+txtoolspath = os.environ.get('TXTOOLSPATH')
+cfg.read(os.path.join(txtoolspath,'tools.conf'))
+# print cfg.sections()
 
 class IngestionStage(object):
 
@@ -26,11 +32,20 @@ class CommandXP(object):
   def openFileOrDir(self, file='./'):
     os.system('open ' + file)
 
+  # def touchFile(self, file='./tmp.txt'):
+  #   os.system('touch ' + file)
+
   def openFileOrDirWithSublime(self, file='./'):
     os.system('open -a "Sublime Text.app" ' + file)
 
-  def openXcodeWorkspaceOrProject(self):
-    rootdir = './'
+  def openXcodePrjAnywhere(self):
+    
+    xcpath = cfg.get('project', 'WorkspacePath')
+    os.system('cd ' + xcpath)
+    print "xcpath", xcpath
+    self.openXcodeWorkspaceOrProject(xcpath)
+
+  def openXcodeWorkspaceOrProject(self, rootdir = './'):
     list = os.listdir(rootdir)#列出目录下的所有文件和目录
     xcodeprojBundle = None
     xcworkspaceBundle = None
@@ -42,9 +57,9 @@ class CommandXP(object):
       if nPos != -1:
         xcworkspaceBundle = line 
     if None != xcworkspaceBundle:
-      os.system('open ' + xcworkspaceBundle)
+      os.system('open ' + os.path.join(rootdir, xcworkspaceBundle))
     elif None != xcodeprojBundle:
-      os.system('open ' + xcworkspaceBundle)      
+      os.system('open ' + os.path.join(rootdir, xcworkspaceBundle))
     else:
       print '当前目录没有找到XCode工程文件'
 

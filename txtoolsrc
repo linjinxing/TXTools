@@ -1,9 +1,14 @@
 
-
-export PATH=$PATH:$HOME/workspace/code/python/TXTools
+export TXTOOLSPATH=$HOME/workspace/code/python/TXTools
+export PATH=$PATH:$TXTOOLSPATH
 alias o="TXTools openFileOrDir"
 alias x="TXTools openXcodeWorkspaceOrProject"
 alias sb="TXTools openFileOrDirWithSublime"
+alias xa="TXTools openXcodePrjAnywhere"
+
+alias t="touch"
+
+# git
 alias gbv="git branch -v"
 alias gcod="gco develop"
 alias gcobd="gco -b develop"
